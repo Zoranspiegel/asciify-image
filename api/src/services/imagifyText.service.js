@@ -8,7 +8,7 @@ const imagifyText = async (text, color) => {
     {
       bgColor: 'black',
     textColor: color,
-    fontFamily: 'monospace',
+    // fontFamily: 'monospace',
     fontSize: 11,
     fontWeight: 'bold',
     lineHeight: 13,
@@ -19,6 +19,7 @@ const imagifyText = async (text, color) => {
   )
 
   // RETORNAR IMAGEN ASCII (BASE64)
+  console.log(asciifyImage.slice(0,20));
   return asciifyImage;
 };
 
