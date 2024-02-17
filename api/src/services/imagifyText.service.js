@@ -11,7 +11,7 @@ const imagifyText = async (text, color) => {
       bubbleTail: { width: 0, height: 0 },
       debug: false,
       debugFilename: '',
-      fontFamily: 'monospace',
+      fontFamily: 'Helvetica',
       fontPath: '',
       fontSize: 11,
       fontWeight: 'bold',
