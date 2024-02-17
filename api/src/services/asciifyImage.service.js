@@ -1,13 +1,25 @@
 const asciiToImage = require('asciify-image');
 
-const asciifyImage = async (img) => {
+const asciifyImage = async (img, definition) => {
+  const setWidth = (def) => {
+    switch (def) {
+      case 'low':
+        return 100;
+      case 'mid':
+        return 200;
+      case 'high':
+        return 300;
+      default:
+        return 200;
+    }
+  }
   
   // CONVERTIR IMAGEN EN UN ARREGLO DE ASCII
   const rawAssciImg = await asciiToImage(img, {
     format: 'array',
     color: false,
     fit: 'width',
-    width: 300
+    width: setWidth(definition)
   });
 
   // MODIFICAR EL ARREGLO DE ASCII Y CONVERTIR EN UNA STRING
