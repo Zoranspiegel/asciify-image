@@ -1,15 +1,15 @@
 const textToImage = require('text-to-image');
 const { registerFont } = require('canvas');
 
-registerFont('./public/Consolas.ttf', { family: 'monospace' });
+registerFont('./public/fonts/Consolas.ttf', { family: 'monospace' });
 
-const imagifyText = async (text, color) => {
+const imagifyText = async (text, textColor, bgColor) => {
   
   // CONVERTIR STRING DE ASCII EN IMAGEN ASCII (BASE64)
   const asciifyImage = await textToImage.generate(
     text,
     {
-      bgColor: 'black',
+      bgColor,
       customHeight: 0,
       bubbleTail: { width: 0, height: 0 },
       debug: false,
@@ -22,7 +22,7 @@ const imagifyText = async (text, color) => {
       margin: 25,
       maxWidth: 3840,
       textAlign: 'center',
-      textColor: color,
+      textColor,
       verticalAlign: 'top'
     }
   )

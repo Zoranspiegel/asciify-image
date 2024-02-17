@@ -5,13 +5,13 @@ const { uploadToCloudinary } = require('../services/uploadToCloudinary.service')
 const asciifyImgAndCloudinaryUpload = async (req, res) => {
   
   try {
-    const { imgUrl, imgName, color } = req.body;
+    const { imgUrl, imgName, color, bg_color } = req.body;
 
     // CONVERTIR IMAGEN EN UNA STRING DE ASCII
     const asciiText = await asciifyImage(imgUrl);
 
     // CONVERTIR STRING DE ASCII EN UNA IMAGEN ASCII (BASE64)
-    const asciiImage = await imagifyText(asciiText, color);
+    const asciiImage = await imagifyText(asciiText, color, bg_color);
 
     // SUBIR IMAGEN ASCII A CLOUDINARY Y RECIBIR URL SEGURA DE ALOJAMIENTO
     const data = await uploadToCloudinary(asciiImage, imgName);
