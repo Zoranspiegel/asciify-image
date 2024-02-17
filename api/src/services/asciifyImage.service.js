@@ -1,18 +1,7 @@
 const asciiToImage = require('asciify-image');
 
-// const asciifyImage = (img) => {
-//   return new Promise((resolve, reject) => {
-//     asciiToImage(img, { color: false, fit: 'width', width: 10 })
-//       .then(res=> {
-//         resolve(res);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   })
-// }
-
 const asciifyImage = async (img) => {
+  
   // CONVERTIR IMAGEN EN UN ARREGLO DE ASCII
   const rawAssciImg = await asciiToImage(img, {
     format: 'array',
@@ -44,3 +33,17 @@ const asciifyImage = async (img) => {
 module.exports = {
   asciifyImage
 }
+
+// ESTRUCTURA DE PROMISE
+
+// const asciifyImage = (img) => {
+//   return new Promise((resolve, reject) => {
+//     asciiToImage(img, { color: false, fit: 'width', width: 10 })
+//       .then(res=> {
+//         resolve(res);
+//       })
+//       .catch(error => {
+//         reject(error);
+//       });
+//   })
+// }

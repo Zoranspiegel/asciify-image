@@ -1,7 +1,8 @@
 const textToImage = require('text-to-image');
-const fs = require('fs');
 
 const imagifyText = async (text, color) => {
+  
+  // CONVERTIR STRING DE ASCII EN IMAGEN ASCII (BASE64)
   const asciifyImage = await textToImage.generate(
     text,
     {
@@ -16,6 +17,8 @@ const imagifyText = async (text, color) => {
     margin: 25
     }
   )
+
+  // RETORNAR IMAGEN ASCII (BASE64)
   return asciifyImage;
 };
 
