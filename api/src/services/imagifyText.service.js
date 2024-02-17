@@ -1,4 +1,7 @@
 const textToImage = require('text-to-image');
+const { registerFont } = require('canvas');
+
+registerFont('monospace', { family: 'monospace' });
 
 const imagifyText = async (text, color) => {
   
@@ -11,7 +14,7 @@ const imagifyText = async (text, color) => {
       bubbleTail: { width: 0, height: 0 },
       debug: false,
       debugFilename: '',
-      fontFamily: 'Helvetica',
+      fontFamily: 'monospace',
       fontPath: '',
       fontSize: 11,
       fontWeight: 'bold',
