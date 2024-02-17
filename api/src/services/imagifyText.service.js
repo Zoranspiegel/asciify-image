@@ -28,7 +28,6 @@ const imagifyText = async (text, color) => {
   )
 
   // RETORNAR IMAGEN ASCII (BASE64)
-  console.log(asciifyImage.slice(0,20));
   return asciifyImage;
 };
 

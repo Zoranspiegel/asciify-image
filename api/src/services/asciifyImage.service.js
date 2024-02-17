@@ -27,7 +27,6 @@ const asciifyImage = async (img) => {
   }).join('\n');
 
   // RETORNAR STRING DE ASCII
-  console.log(assciImg.slice(0,20));
   return assciImg;
 };
 
