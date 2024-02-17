@@ -1,7 +1,7 @@
 const textToImage = require('text-to-image');
 const { registerFont } = require('canvas');
 
-registerFont('../../public/Consolas.ttf', { family: 'monospace' });
+registerFont('./Consolas.ttf', { family: 'monospace' });
 
 const imagifyText = async (text, color) => {
   
