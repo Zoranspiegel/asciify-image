@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Create Ascii</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      align-items: center;
+      background-color: black;
+      color: green;
+      font-family: monospace;
+    }
+
+    #miFormulario {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: green 2px solid;
+      border-radius: 10px;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .camp {
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+    }
+
+    #miBoton {
+      background-color: green;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>ASCII Image</h1>
+
+  <form id="miFormulario">
+    <div class="camp">
+      <label for="campo1">Image URL:</label>
+      <input type="text" id="campo1" name="campo1" required>
+    </div>
+
+    <div class="camp">
+      <label for="campo2">Image Name:</label>
+      <input type="text" id="campo2" name="campo2" required>
+    </div>
+
+    <div class="camp">
+      <label for="campo3">Characters color:</label>
+      <input type="text" id="campo3" name="campo3" required>
+    </div>
+
+    <div class="camp">
+      <label for="campo4">Background color:</label>
+      <input type="text" id="campo4" name="campo4" required>
+    </div>
+
+    <div class="camp">
+      <label for="campo5">Definition</label>
+      <select name='campo5' id='campo5' >
+        <option value='low'>low</option>
+        <option value='mid'>mid</option>
+        <option value='high'>high</option>
+      </select>
+    </div>
+
+    <button type="button" id="miBoton">GO</button>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const miBoton = document.getElementById('miBoton');
+      const miFormulario = document.getElementById('miFormulario');
+
+      miBoton.addEventListener('click', () => {
+        // Obtener los valores del formulario
+        const campo1Value = document.getElementById('campo1').value;
+        const campo2Value = document.getElementById('campo2').value;
+        const campo3Value = document.getElementById('campo3').value;
+        const campo4Value = document.getElementById('campo4').value;
+        const campo5Value = document.getElementById('campo5').value;
+
+        // Crear un objeto con los datos del formulario
+        const data = {
+            img_url: campo1Value,
+            img_name: campo2Value,
+            color: campo3Value,
+            bg_color: campo4Value,
+            definition: campo5Value
+        };
+
+        // Realizar la solicitud POST con Axios
+        axios.post('https://asciify-image-production.up.railway.app/api/ascii', data)
+          .then(response => {
+            window.location.href = response.data.img;
+          })
+          .catch(error => {
+            console.error('Error en la solicitud:', error);
+          });
+      });
+    });
+  </script>
+</body>
+</html>
