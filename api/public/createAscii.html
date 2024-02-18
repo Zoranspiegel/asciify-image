@@ -21,7 +21,6 @@
       color: green;
       font-family: monospace;
       user-select: none;
-      cursor: pointer;
     }
 
     #miFormulario {
@@ -73,7 +72,6 @@
       border: 2px solid green;
       background-color: black;
       color: green;
-      cursor: pointer;
     }
 
     #campo5 {
@@ -121,15 +119,28 @@
       </select>
     </div>
 
-    <button type="button" id="miBoton">C0NV3RT</button>
+    <div id="buttonContainer">
+      <button type="button" id="miBoton">C0NV3RT</button>
+    </div>
   </form>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const miBoton = document.getElementById('miBoton');
-      const miFormulario = document.getElementById('miFormulario');
+      const buttonContainer = document.getElementById('buttonContainer');
 
+      const loading = document.createElement('p');
+
+      loading.textContent = 'Loading...';
+      loading.style.fontWeight = 'light';
+      loading.style.fontSize = '1rem';
+
+      
       miBoton.addEventListener('click', () => {
+        buttonContainer.appendChild(loading);
+        buttonContainer.removeChild(miBoton);
+
+
         // Obtener los valores del formulario
         const campo1Value = document.getElementById('campo1').value;
         const campo2Value = document.getElementById('campo2').value;
@@ -149,10 +160,14 @@
         // Realizar la solicitud POST con Axios
         axios.post('https://asciify-image-production.up.railway.app/api/ascii', data)
           .then(response => {
-            window.location.href = response.data.img;
+            window.open(response.data.img);
+          })
+          .then(() => {
+            location.reload();
           })
           .catch(error => {
-            console.error('Error en la solicitud:', error);
+            alert('Error en la solicitud');
+            location.reload();
           });
       });
     });
