@@ -159,7 +159,7 @@
         };
 
         // Realizar la solicitud POST con Axios
-        axios.post('https://asciify-image-production.up.railway.app/api/ascii', data)
+        axios.post('/api/ascii', data)
           .then(response => {
             window.open(response.data.img);
           })
