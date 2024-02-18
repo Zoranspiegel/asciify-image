@@ -164,8 +164,10 @@
             window.location.href = response.data.img;
             // window.open(response.data.img);
           })
-          .then(() => {            
-            location.reload();
+          .then(() => {
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
           })
           .catch(error => {
             alert('Error en la solicitud');
