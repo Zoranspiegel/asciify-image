@@ -3,11 +3,8 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Create Ascii</title>
+  <title>Asciify Image</title>
   <style>
-    #title {
-      margin: 0;
-    }
 
     body {
       display: flex;
@@ -15,6 +12,7 @@
       justify-content: center;
       min-height: 100vh;
       margin: 0;
+      padding: 0;
       align-items: center;
       background: url('https://res.cloudinary.com/dkc8xrlg8/image/upload/v1708254931/ASCII%20Images/Sewers.png');
       background-position: center;
@@ -24,7 +22,11 @@
       cursor: url('/hand3.cur'), auto;
     }
 
-    #miFormulario {
+    #title {
+      margin: 0;
+    }
+
+    #myForm {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -36,7 +38,7 @@
       gap: 20px;
     }
 
-    .camp {
+    .field {
       display: flex;
       flex-direction: column;
       font-size: 1rem;
@@ -58,24 +60,22 @@
       background-color: black;
     }
 
-    #miBoton {
+    #myButton {
       background-color: green;
       font-family: monospace;
       font-size: 1rem;
       font-weight: bold;
-      border: none;
       border: 2px solid green;
       border-radius: 5px;
       cursor: url('/hand4.cur'), auto;
     }
 
-    #miBoton:hover {
-      border: 2px solid green;
+    #myButton:hover {
       background-color: black;
       color: green;
     }
 
-    #campo5 {
+    #field5 {
       border: double 3px green;
       border-radius: 5px;
       background-color: black;
@@ -89,31 +89,31 @@
 </head>
 <body>
   
-  <form id="miFormulario">
+  <form id="myForm">
     <h1 id="title">IMG_URL => ASCII</h1>
-    <div class="camp">
-      <label for="campo1">1M4G3 URL:</label>
-      <input class="input" type="text" id="campo1" name="campo1" required>
+    <div class="field">
+      <label for="field1">1M4G3 URL:</label>
+      <input class="input" type="text" id="field1" name="field1" required>
     </div>
 
-    <div class="camp">
-      <label for="campo2">IM4G3 N4M3:</label>
-      <input class="input" type="text" id="campo2" name="campo2" required>
+    <div class="field">
+      <label for="field2">IM4G3 N4M3:</label>
+      <input class="input" type="text" id="field2" name="field2" required>
     </div>
 
-    <div class="camp">
-      <label for="campo3">CH4R4CT3R5 C0L0R:</label>
-      <input class="input" type="text" id="campo3" name="campo3" required>
+    <div class="field">
+      <label for="field3">CH4R4CT3R5 C0L0R:</label>
+      <input class="input" type="text" id="field3" name="field3" required>
     </div>
 
-    <div class="camp">
-      <label for="campo4">B4CK6R0UND C0L0R:</label>
-      <input class="input" type="text" id="campo4" name="campo4" required>
+    <div class="field">
+      <label for="field4">B4CK6R0UND C0L0R:</label>
+      <input class="input" type="text" id="field4" name="field4" required>
     </div>
 
-    <div class="camp">
-      <label for="campo5">D3F1N1T10N5</label>
-      <select name='campo5' id='campo5' >
+    <div class="field">
+      <label for="field5">D3F1N1T10N5</label>
+      <select name='field5' id='field5' >
         <option value='low'>low</option>
         <option value='mid'>mid</option>
         <option value='high'>high</option>
@@ -121,55 +121,104 @@
     </div>
 
     <div id="buttonContainer">
-      <button type="button" id="miBoton">C0NV3RT</button>
+      <button type="button" id="myButton">C0NV3RT</button>
     </div>
   </form>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const miBoton = document.getElementById('miBoton');
+      // Seleccionar elementos del DOM
+      const myBody = document.querySelector('body');
+      const myForm = document.getElementById('myForm');
+      const myButton = document.getElementById('myButton');
       const buttonContainer = document.getElementById('buttonContainer');
 
+      // Crear elemento de carga del fetch
       const loading = document.createElement('p');
 
       loading.textContent = 'Loading...';
       loading.style.fontWeight = 'light';
       loading.style.fontSize = '1rem';
 
+      // Crear elemento de imagen para la respuesta del fetch
+      const image = document.createElement('img');
+
+      image.style.boxSizing = 'border-box';
+      image.style.maxHeight = '100vh';
+      image.style.maxWidth = '100vw';
+      image.style.border = '3px double green';
+
+      // Crear botón de cierre de la imagen de respuesta del fetch
+      const closeButton = document.createElement('button');
+
+      closeButton.textContent = 'Close';
+
+      closeButton.style.position = 'absolute';
+      closeButton.style.bottom = '10px';
+      closeButton.style.backgroundColor = 'green';
+      closeButton.style.color = 'black';
+      closeButton.style.border = '2px solid green';
+      closeButton.style.borderRadius = '5px';
+      closeButton.style.fontFamily = 'monospace';
+      closeButton.style.fontSize = '1rem';
+      closeButton.style.fontWeight = 'bold';
+
+      // Recargar la página para reiniciar el DOM al presionar el botón de cierre
+      closeButton.addEventListener('click', () => {
+        location.reload();
+      });
       
-      miBoton.addEventListener('click', () => {
+      // Cambiar estilos al hacer hover sobre el botón de cierre
+      closeButton.addEventListener('mouseover', () => {
+        closeButton.style.backgroundColor = 'black';
+        closeButton.style.color = 'green';
+        closeButton.style.cursor = "url('/hand4.cur'), auto";
+      });
+      
+      closeButton.addEventListener('mouseout', () => {
+        closeButton.style.backgroundColor = 'green';
+        closeButton.style.color = 'black';
+      });
+      
+      // Reemplazar botón de fetch por elemento de carga
+      myButton.addEventListener('click', () => {
         buttonContainer.appendChild(loading);
-        buttonContainer.removeChild(miBoton);
+        buttonContainer.removeChild(myButton);
 
 
         // Obtener los valores del formulario
-        const campo1Value = document.getElementById('campo1').value;
-        const campo2Value = document.getElementById('campo2').value;
-        const campo3Value = document.getElementById('campo3').value;
-        const campo4Value = document.getElementById('campo4').value;
-        const campo5Value = document.getElementById('campo5').value;
+        const field1Value = document.getElementById('field1').value;
+        const field2Value = document.getElementById('field2').value;
+        const field3Value = document.getElementById('field3').value;
+        const field4Value = document.getElementById('field4').value;
+        const field5Value = document.getElementById('field5').value;
 
         // Crear un objeto con los datos del formulario
         const data = {
-            img_url: campo1Value,
-            img_name: campo2Value,
-            color: campo3Value,
-            bg_color: campo4Value,
-            definition: campo5Value
+            img_url: field1Value,
+            img_name: field2Value,
+            color: field3Value,
+            bg_color: field4Value,
+            definition: field5Value
         };
 
         // Realizar la solicitud POST con Axios
         axios.post('/api/ascii', data)
           .then(response => {
-            window.location.href = response.data.img;
-            // window.open(response.data.img);
-          })
-          .then(() => {
-            setTimeout(() => {
-              location.reload();
-            }, 2000);
+            // Asignar el nombre del archivo en cloudinary al alt del elemento img
+            const imgAlt = response.data.img.split('/').pop().split('.')[0];
+            image.alt = imgAlt;
+
+            //Asignar respuesta de Axios al src del elemento img
+            image.src = response.data.img;
+
+            // Reemplazar el elemento form por el elemento img y el botón de cierre en el DOM
+            myBody.removeChild(myForm);
+            myBody.appendChild(image);
+            myBody.appendChild(closeButton);
           })
           .catch(error => {
+            // Manejo de error con alerta del navegador y refresco posterior
             alert('Error en la solicitud');
             location.reload();
           });
