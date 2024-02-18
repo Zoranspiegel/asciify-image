@@ -161,12 +161,11 @@
         // Realizar la solicitud POST con Axios
         axios.post('/api/ascii', data)
           .then(response => {
-            window.open(response.data.img);
+            window.location.href = response.data.img;
+            // window.open(response.data.img);
           })
-          .then(() => {
-            setTimeout(() => {
-              location.reload();
-            }, 2000)
+          .then(() => {            
+            location.reload();
           })
           .catch(error => {
             alert('Error en la solicitud');
