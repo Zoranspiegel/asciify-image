@@ -5,6 +5,10 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Create Ascii</title>
   <style>
+    #title {
+      margin: 0;
+    }
+
     body {
       display: flex;
       flex-direction: column;
@@ -12,9 +16,12 @@
       min-height: 100vh;
       margin: 0;
       align-items: center;
-      background-color: black;
+      background: url('https://res.cloudinary.com/dkc8xrlg8/image/upload/v1708208376/ASCII%20Images/Sewers.png');
+      background-position: center;
       color: green;
       font-family: monospace;
+      user-select: none;
+      cursor: url('./cursors/hand3.cur'), auto;
     }
 
     #miFormulario {
@@ -22,7 +29,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: green 2px solid;
+      border: green 4px double;
+      background-color: rgba(0, 0, 0, 0.8);
       border-radius: 10px;
       padding: 20px;
       gap: 20px;
@@ -34,44 +42,78 @@
       font-size: 1rem;
     }
 
+    .input {
+      border: double 3px green;
+      border-radius: 5px;
+      background-color: rgba(0, 128, 0, 0.1);
+      color: green;
+      padding: 10px;
+      outline: none;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .input:target {
+      background-color: black;
+    }
+
     #miBoton {
       background-color: green;
       font-family: monospace;
       font-size: 1rem;
       font-weight: bold;
       border: none;
+      border: 2px solid green;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    #miBoton:hover {
+      border: 2px solid green;
+      background-color: black;
+      color: green;
+      cursor: url('./cursors/hand4.cur'), auto;
+    }
+
+    #campo5 {
+      border: double 3px green;
+      border-radius: 5px;
+      background-color: black;
+      color: green;
+      text-align: center;
+      outline: none;
+      cursor: url('./cursors/hand4.cur'), auto;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <h1>ASCII Image</h1>
-
+  
   <form id="miFormulario">
+    <h1 id="title">IMG_URL => ASCII</h1>
     <div class="camp">
-      <label for="campo1">Image URL:</label>
-      <input type="text" id="campo1" name="campo1" required>
+      <label for="campo1">1M4G3 URL:</label>
+      <input class="input" type="text" id="campo1" name="campo1" required>
     </div>
 
     <div class="camp">
-      <label for="campo2">Image Name:</label>
-      <input type="text" id="campo2" name="campo2" required>
+      <label for="campo2">IM4G3 N4M3:</label>
+      <input class="input" type="text" id="campo2" name="campo2" required>
     </div>
 
     <div class="camp">
-      <label for="campo3">Characters color:</label>
-      <input type="text" id="campo3" name="campo3" required>
+      <label for="campo3">CH4R4CT3R5 C0L0R:</label>
+      <input class="input" type="text" id="campo3" name="campo3" required>
     </div>
 
     <div class="camp">
-      <label for="campo4">Background color:</label>
-      <input type="text" id="campo4" name="campo4" required>
+      <label for="campo4">B4CK6R0UND C0L0R:</label>
+      <input class="input" type="text" id="campo4" name="campo4" required>
     </div>
 
     <div class="camp">
-      <label for="campo5">Definition</label>
+      <label for="campo5">D3F1N1T10N5</label>
       <select name='campo5' id='campo5' >
         <option value='low'>low</option>
         <option value='mid'>mid</option>
@@ -79,7 +121,7 @@
       </select>
     </div>
 
-    <button type="button" id="miBoton">GO</button>
+    <button type="button" id="miBoton">C0NV3RT</button>
   </form>
 
   <script>

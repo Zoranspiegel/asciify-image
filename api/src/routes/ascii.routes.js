@@ -4,11 +4,15 @@ const path = require('path');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  console.log(__dirname);
-  const dir = __dirname.split('/src/routes')[0];
-  console.log(dir);
-  // res.send('Under dev');
+router.get('/', (req, res) => {  
+  let dir;
+
+  if (__dirname.includes('\\')) {
+    dir = __dirname.split('\\src\\routes')[0];
+  } else {
+    dir = __dirname.split('/src/routes')[0];
+  }
+  
   res.sendFile(path.join(dir, '/public/createAscii.html'));
 })
 
