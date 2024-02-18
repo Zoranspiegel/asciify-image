@@ -4,6 +4,14 @@ registerFont('./public/fonts/Consolas.ttf', { family: 'monospace' });
 
 
 const textToImageConfig = (textColor, bgColor, definition) => {
+  if (!textColor) {
+    textColor = 'green';
+  }
+
+  if (!bgColor) {
+    bgColor = 'black'
+  };
+  
   const lowDef = {
     bgColor,
     customHeight: 0,
