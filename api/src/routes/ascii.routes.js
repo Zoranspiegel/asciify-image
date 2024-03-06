@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   res.status(200).sendFile(filePath);
 })
 
-router.post('/test', ctr.asciiTest);
+router.post('/avatar', ctr.asciifyAvatarAndCloudinaryUpload);
 
 router.post('/', ctr.asciifyImgAndCloudinaryUpload);
 
